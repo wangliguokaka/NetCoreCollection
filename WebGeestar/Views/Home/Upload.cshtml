@@ -1,0 +1,57 @@
+﻿@model WebGeestar.Startup
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<h4>Startup</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <input type="file" id="files"
+               name="files" multiple />
+        <input type="button"
+               id="upload"
+               value="Upload Selected Files" />
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+           
+            $("#upload").click(function (evt) {
+                var fileUpload = $("#files").get(0);
+                var files = fileUpload.files;
+                var data = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    data.append(files[i].name, files[i]);
+                }
+                
+                $.ajax({
+                    type: "POST",
+                    url: "/api/values",
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (message) {
+                        alert(message);
+                    },
+                    error: function (ex) {
+                        alert(ex.message);
+                    }
+                });
+            });
+        });
+</script>
+}

@@ -1,0 +1,60 @@
+﻿@model List<string>
+
+
+@{
+    ViewData["Title"] = "文件下载";
+}
+
+<hr />
+<div class="row">
+   
+    @foreach (var p in Model)
+    {
+        <h3><a href="@p">@p</a> </h3>
+    }
+    </div>
+<div id="app">
+    <h3>@ViewData["IndexMessage"]</h3>
+</div>
+
+<div>
+    
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+    new Vue({
+    el:'#app',
+    data: {
+        message:'Hello World!'
+    }
+});
+    $(document).ready(function () {
+           
+            $("#upload").click(function (evt) {
+                var fileUpload = $("#files").get(0);
+                var files = fileUpload.files;
+                var data = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    data.append(files[i].name, files[i]);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "api/values",
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (message) {
+                        alert(message);
+                    },
+                    error: function (ex) {
+                        alert(ex.message);
+                    }
+                });
+            });
+        });
+</script>
+}
