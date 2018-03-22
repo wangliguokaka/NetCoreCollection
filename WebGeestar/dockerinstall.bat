@@ -1,4 +1,6 @@
-cd NetCorePublish\JenkinsPublishBuild
+cd NetCorePublish
+unrar x source.zip
+cd JenkinsPublishBuild
 docker build -t wlgneturl/autowebfile001 autowebfile001 .
 docker stop containerfile 
 docker rm containerfile 
