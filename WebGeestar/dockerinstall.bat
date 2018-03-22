@@ -1,5 +1,5 @@
 cd NetCorePublish
-"D:\Program Files (x86)\WinRAR\unrar" x source.zip
+"D:\Program Files (x86)\WinRAR\winrar" x source.zip
 cd JenkinsPublishBuild
 docker build -t wlgneturl/autowebfile001 .
 docker stop containerfile 
