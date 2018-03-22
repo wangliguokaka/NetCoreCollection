@@ -14,7 +14,7 @@ WORKDIR /usr/local/src/DockerWebAPIFile
 COPY . /usr/local/src/DockerWebAPIFile
  
 # 向外界暴露5000端口
-EXPOSE 5000
+EXPOSE 5001
  
 # 执行dotnet WebAPI.dll命令
 CMD ["dotnet", "WebGeestar.dll"]
